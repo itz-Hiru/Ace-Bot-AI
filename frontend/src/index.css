@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-display: "Urbanist", sans-serif;
+    --breakpoint-3xl: 1920px;
+}
+
+@layer base {
+    html {
+        font-family: var(--font-display);
+    }
+
+    body {
+        background-color: #FCFBFC;
+        overflow-x: hidden;
+    }
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, .4);
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+@layer utilities {
+    /* Animated text shine effect */
+    @keyframes text-shine {
+        0% {
+            background-position: 0% 50%;
+        } 100% {
+            background-position: 100% 50%;
+        }
+    }
+
+    .animate-text-shine {
+        animation: text-shine 3s ease-in-out infinite alternate;
+    }
+
+    /* Blob animations */
+    @keyframes blob1 {
+        0%, 100% {
+            transform: translate(0px, 0px) scale(1);
+        } 33% {
+            transform: translate(30px, -60px) scale(1.1);
+        } 66% {
+            transform: translate(-20px, 20px) scale(.9);
+        }
+    }
+
+    @keyframes blob2 {
+        0%, 100% {
+            transform: translate(0px, 0px) scale(1);
+        } 33% {
+            transform: translate(-40px, 60px) scale(1.05);
+        } 66% {
+            transform: translate(20px, -40px) scale(.95);
+        }
+    }
+
+    @keyframes blob3 {
+        0%, 100% {
+            transform: translate(0px, 0px) scale(1);
+        } 33% {
+            transform: translate(20px, 140px) scale(1.15);
+        } 66% {
+            transform: translate(-30px, -30px) scale(.85);
+        }
+    }
+
+    .animate-blob1 {
+        animation: blob1 8s ease-in-out infinite;
+    }
+
+    .animate-blob2 {
+        animation: blob2 10s ease-in-out infinite;
+    }
+
+    .animate-blob3 {
+        animation: blob3 12s ease-in-out infinite;
+    }
+
+    /* Input box styles */
+    .input-box {
+        @apply w-ful flex justify-between gap-3 text-sm text-black bg-gray-50/50 rounded px-4 py-3 mb-4 mt-3 border border-gray-100 outline-none focus-within:border-indigo-300;
+    }
+
+    /* Primary button styles */
+    .btn-primary {
+        @apply w-full flex items-center justify-center gap-3 text-sm font-medium text-white bg-indigo-900 shadow-lg shadow-indigo-600/5 p-[10px] rounded-md my-1 hover:bg-indigo-600/15 hover:text-black cursor-pointer;
+    }
+
+    /* Secondary button style */
+    .btn-secondary {
+        @apply flex items-center justify-center gap-3 bg-linear-to-r from-indigo-400 to-indigo-700 text-sm font-semibold text-white px-7 py-2 rounded-lg hover:bg-indigo-900 hover:text-white transition-colors cursor-pointer hover:shadow-2xl hover:shadow-indigo-300;
+    }
+}
