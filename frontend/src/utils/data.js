@@ -2,7 +2,7 @@ export const NAV_LINKS = [
   {
     id: "01",
     name: "Home",
-    path: "#hero",
+    path: "#",
   },
   {
     id: "02",

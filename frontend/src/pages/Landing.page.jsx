@@ -12,22 +12,31 @@ const Landing = () => {
   const navigate = useNavigate();
 
   const [openAuthModal, setOpenAuthModal] = useState(false);
-  const [currentPage, setCurrentPage] = useState("login");
 
   const handleCTA = () => {};
+
   return (
     <div>
       <Navbar onClick={() => setOpenAuthModal(true)} />
-      <div className="container mx-auto mt-[90px] md:mt-[110px]">
-        <Hero onClick={handleCTA} />
-        <Features />
-        <Work />
-        <Testimonials />
-        <Contact />
+      <div
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage:
+            "url(https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/hero/gradientBackground.png)",
+        }}
+      />
+      <div className="relative z-10">
+        <div className="container mx-auto mt-[70px] md:mt-[90px] px-4">
+          <Hero onClick={handleCTA} />
+          <Features />
+          <Work />
+          <Testimonials />
+          <Contact />
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Landing
+export default Landing;
