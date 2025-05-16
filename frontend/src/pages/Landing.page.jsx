@@ -17,9 +17,9 @@ const Landing = () => {
   const handleCTA = () => {};
   return (
     <div>
-      <Navbar />
-      <div className="container mx-auto mt-[100px]">
-        <Hero />
+      <Navbar onClick={() => setOpenAuthModal(true)} />
+      <div className="container mx-auto mt-[90px] md:mt-[110px]">
+        <Hero onClick={handleCTA} />
         <Features />
         <Work />
         <Testimonials />
