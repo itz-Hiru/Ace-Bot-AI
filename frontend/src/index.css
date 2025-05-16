@@ -4,11 +4,15 @@
 @theme {
     --font-display: "Urbanist", sans-serif;
     --breakpoint-3xl: 1920px;
+    --color-primary: #DE0000;
+    --color-secondary: #FE0000;
 }
 
 @layer base {
     html {
         font-family: var(--font-display);
+        scroll-behavior: smooth;
+        scrollbar-width: 1px;
     }
 
     body {
@@ -90,7 +94,7 @@
 
     /* Input box styles */
     .input-box {
-        @apply w-ful flex justify-between gap-3 text-sm text-black bg-gray-50/50 rounded px-4 py-3 mb-4 mt-3 border border-gray-100 outline-none focus-within:border-indigo-300;
+        @apply w-full flex justify-between gap-3 text-sm text-black bg-gray-50/50 rounded px-4 py-3 mb-4 mt-3 border border-gray-100 outline-none focus-within:border-indigo-300;
     }
 
     /* Primary button styles */
