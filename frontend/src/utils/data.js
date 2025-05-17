@@ -57,4 +57,10 @@ export const FEATURES = [
     description:
       "Keep track of your preparation journey and identify areas for improvement with detailed analytics.",
   },
+  {
+  id: "06",
+  title: "Expert guidance and tips",
+  description:
+    "Receive curated advice from industry professionals to enhance your responses and stand out in interviews.",
+},
 ];

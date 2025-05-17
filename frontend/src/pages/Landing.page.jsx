@@ -18,15 +18,13 @@ const Landing = () => {
   return (
     <div>
       <Navbar onClick={() => setOpenAuthModal(true)} />
-      <div
-        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage:
-            "url(https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/hero/gradientBackground.png)",
-        }}
+      <img
+        src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/hero/gradientBackground.png"
+        alt=""
+        className="absolute top-0 left-0 h-[100vh] object-cover z-0"
       />
       <div className="relative z-10">
-        <div className="container mx-auto mt-[70px] md:mt-[90px] px-4">
+        <div className="container mx-auto px-4">
           <Hero onClick={handleCTA} />
           <Features />
           <Work />

@@ -13,6 +13,9 @@ const Hero = ({ onClick }) => {
         if (entries[0].isIntersecting) {
           controls.start({ opacity: 1, x: 0 });
           imageControls.start({ opacity: 1, x: 0 });
+        } else {
+          controls.start({ opacity: 0, x: -50 });
+          imageControls.start({ opacity: 0, x: 50 });
         }
       },
       { threshold: 0.2 }
@@ -31,7 +34,7 @@ const Hero = ({ onClick }) => {
   return (
     <section
       ref={sectionRef}
-      className="w-full min-h-[80vh] flex flex-col-reverse md:flex-row items-center px-5 md:px-0"
+      className="w-full min-h-[100vh] flex flex-col-reverse md:flex-row items-center px-5 md:px-0 py-auto"
       id="hero"
     >
       <motion.div
@@ -71,7 +74,7 @@ const Hero = ({ onClick }) => {
       <motion.div
         className="w-full md:w-1/2 mb-15 md:mb-0"
         initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
+        animate={imageControls}
         transition={{ duration: 0.8, ease: "easeInOut" }}
       >
         <img
