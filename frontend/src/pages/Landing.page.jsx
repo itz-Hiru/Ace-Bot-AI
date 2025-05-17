@@ -5,7 +5,6 @@ import Hero from "../sections/Hero.section";
 import Features from "../sections/Features.section";
 import Work from "../sections/Work.section";
 import Testimonials from "../sections/Testimonials.section";
-import Contact from "../sections/Contact.section";
 import Footer from "../components/Footer/Footer.component";
 
 const Landing = () => {
@@ -29,7 +28,6 @@ const Landing = () => {
           <Features />
           <Work />
           <Testimonials />
-          <Contact />
         </div>
         <Footer />
       </div>

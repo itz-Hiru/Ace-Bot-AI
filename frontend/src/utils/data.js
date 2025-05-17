@@ -1,3 +1,10 @@
+import TESTIMONIAL_IMAGE_01 from "../assets/testimonial-01.jpg";
+import TESTIMONIAL_IMAGE_02 from "../assets/testimonial-02.jpg";
+import TESTIMONIAL_IMAGE_03 from "../assets/testimonial-03.jpg";
+import TESTIMONIAL_IMAGE_04 from "../assets/testimonial-04.jpg";
+import TESTIMONIAL_IMAGE_05 from "../assets/testimonial-05.jpg";
+import TESTIMONIAL_IMAGE_06 from "../assets/testimonial-06.jpg";
+
 export const NAV_LINKS = [
   {
     id: "01",
@@ -18,11 +25,6 @@ export const NAV_LINKS = [
     id: "04",
     name: "Testimonials",
     path: "#testimonials",
-  },
-  {
-    id: "05",
-    name: "Contact",
-    path: "#contact",
   },
 ];
 
@@ -69,16 +71,70 @@ export const HOW_IT_WORKS = [
   {
     id: "01",
     title: "Select your role",
-    description: "Choose your industry, experience level, and desired focus area to personalize your preparation.",
+    description:
+      "Choose your industry, experience level, and desired focus area to personalize your preparation.",
   },
   {
     id: "02",
     title: "Generate AI-Powered Questions",
-    description: "Instantly receive curated interview questions and model answers based on your profile.",
+    description:
+      "Instantly receive curated interview questions and model answers based on your profile.",
   },
   {
     id: "03",
     title: "Practice and Improve",
-    description: "Refine your responses with real-time practice and feedback to boost your confidence."
-  }
-]
+    description:
+      "Refine your responses with real-time practice and feedback to boost your confidence.",
+  },
+];
+
+export const TESTIMONIALS = [
+  {
+    id: "01",
+    image: TESTIMONIAL_IMAGE_01,
+    name: "Sarah L.",
+    position: "Product Manager",
+    description:
+      "I was struggling with behavioral questions, but AceBot's AI-generated answers gave me the edge I needed. Totally worth it!",
+  },
+  {
+    id: "02",
+    image: TESTIMONIAL_IMAGE_02,
+    name: "James K.",
+    position: "Software Engineer",
+    description:
+      "AceBot helped me land my dream tech job! The personalized questions were spot on, and the real-time practice made me feel confident on interview day.",
+  },
+  {
+    id: "03",
+    image: TESTIMONIAL_IMAGE_03,
+    name: "Emily R.",
+    position: "Data Analyst",
+    description:
+      "As a recent grad, I needed guidance, and AceBot delivered. The tailored questions matched my role perfectly!",
+  },
+  {
+    id: "04",
+    image: TESTIMONIAL_IMAGE_04,
+    name: "Michael P.",
+    position: "Marketing Specialist",
+    description:
+      "AceBot made my prep journey super easy. I loved how it adapted to my experience level and focus areas.",
+  },
+  {
+    id: "05",
+    image: TESTIMONIAL_IMAGE_05,
+    name: "Priya S.",
+    position: "Financial Analyst",
+    description:
+      "The progress tracking and personalized feedback really helped me identify my weaknesses. I felt fully prepared!",
+  },
+  {
+    id: "06",
+    image: TESTIMONIAL_IMAGE_06,
+    name: "David M.",
+    position: "UX Designer",
+    description:
+      "I’ve tried many interview tools, but AceBot stands out. It feels like a personal coach guiding you through every step.",
+  },
+];
