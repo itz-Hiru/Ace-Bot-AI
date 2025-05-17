@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { FEATURES } from "../utils/data";
 import { useInView } from "react-intersection-observer";
@@ -40,7 +40,7 @@ const Features = () => {
   return (
     <section
       ref={ref}
-      className="w-full min-h-[100vh] items-center justify-center px-5 md:px-0 py-8"
+      className="w-full min-h-[80vh] items-center justify-center px-5 md:px-0 py-8"
       id="features"
     >
       <motion.div

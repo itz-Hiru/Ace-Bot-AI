@@ -58,9 +58,27 @@ export const FEATURES = [
       "Keep track of your preparation journey and identify areas for improvement with detailed analytics.",
   },
   {
-  id: "06",
-  title: "Expert guidance and tips",
-  description:
-    "Receive curated advice from industry professionals to enhance your responses and stand out in interviews.",
-},
+    id: "06",
+    title: "Expert guidance and tips",
+    description:
+      "Receive curated advice from industry professionals to enhance your responses and stand out in interviews.",
+  },
 ];
+
+export const HOW_IT_WORKS = [
+  {
+    id: "01",
+    title: "Select your role",
+    description: "Choose your industry, experience level, and desired focus area to personalize your preparation.",
+  },
+  {
+    id: "02",
+    title: "Generate AI-Powered Questions",
+    description: "Instantly receive curated interview questions and model answers based on your profile.",
+  },
+  {
+    id: "03",
+    title: "Practice and Improve",
+    description: "Refine your responses with real-time practice and feedback to boost your confidence."
+  }
+]
