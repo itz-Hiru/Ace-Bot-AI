@@ -43,7 +43,7 @@ const Work = () => {
       id="work"
     >
       <motion.div
-        className="flex flex-col items-center justify-center mb-10"
+        className="flex flex-col items-center justify-center mb-20"
         initial="hidden"
         animate={controls}
         variants={containerVariants}
@@ -52,7 +52,7 @@ const Work = () => {
           Ace your interview in{" "}
           <span className="text-primary">3 Simple Steps</span>
         </h2>
-        <p className="text-[13px] md:text-[14px] text-gray-700 text-center">
+        <p className="text-[13px] md:text-[14px] text-black/70 text-center">
           From personalized question generation to real-time practice – we make
           interview prep a breeze.
         </p>
@@ -66,7 +66,7 @@ const Work = () => {
         {HOW_IT_WORKS.map((step, index) => (
           <motion.div
             key={index}
-            className="bg-white p-5 items-center text-black border border-slate-200 rounded-lg shadow-md hover:shadow-primary/10 transition-colors duration-300"
+            className="bg-black/5 p-5 items-center text-black border border-black/4 rounded-lg shadow-md hover:shadow-primary/10 transition-colors duration-300"
             variants={itemVariants}
           >
             <div className="flex flex-row items-center justify-center gap-4 mb-5">
@@ -80,7 +80,7 @@ const Work = () => {
                 {step.title}
               </h2>
             </div>
-            <p className="text-[13px] md:text-[15px] text-gray-600">
+            <p className="text-[13px] md:text-[15px] text-black/60">
               {step.description}
             </p>
           </motion.div>

@@ -53,7 +53,7 @@ const Features = () => {
           Unlock the Future of{" "}
           <span className="text-primary">AI Interviews</span>
         </h2>
-        <p className="text-[13px] md:text-[14px] text-gray-700 text-center">
+        <p className="text-[13px] md:text-[14px] text-black/70 text-center">
           Elevate your preparation with AI-driven insights and ace every
           interview.
         </p>
@@ -68,13 +68,13 @@ const Features = () => {
         {FEATURES.map((feature, index) => (
           <motion.div
             key={index}
-            className="bg-white p-5 items-center text-black border border-slate-200 rounded-lg shadow-md hover:shadow-primary/10 transition-colors duration-300"
+            className="bg-black/5 p-5 items-center text-black border border-black/4 rounded-lg shadow-md hover:shadow-primary/10 transition-colors duration-300"
             variants={itemVariants}
           >
             <h2 className="text-xl font-semibold mb-5 text-center">
               {feature.title}
             </h2>
-            <p className="text-[13px] md:text-[15px] text-gray-600">
+            <p className="text-[13px] md:text-[15px] text-black/60">
               {feature.description}
             </p>
           </motion.div>

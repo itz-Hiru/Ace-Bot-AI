@@ -44,7 +44,7 @@ const Hero = ({ onClick }) => {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <div className="hidden md:flex items-center mb-2">
-          <span className="text-[13px] text-slate-600 font-semibold mr-2">
+          <span className="text-[13px] text-black/60 font-semibold mr-2">
             Welcome
           </span>
           <div className="flex-1 h-[1px] bg-slate-300"></div>
@@ -56,14 +56,14 @@ const Hero = ({ onClick }) => {
           </span>{" "}
           Precision
         </h1>
-        <p className="text-[14px] md:text-[17px] text-gray-900 mb-6">
+        <p className="text-[14px] md:text-[17px] text-black/80 mb-6">
           Get personalized, role-specific questions, uncover insights, and
           supercharge your preparation. From practice to mastery – conquer every
           interview with confidence.
         </p>
         <motion.button
           type="button"
-          className="bg-gradient-to-r from-primary/70 to-primary hover:from-primary hover:to-primary/70 text-sm text-white font-semibold px-7 py-2.5 rounded-full transition-colors duration-900 cursor-pointer"
+          className="bg-gradient-to-r from-primary/70 to-primary hover:from-primary hover:to-primary/70 text-sm text-[#FFFFFF] font-semibold px-7 py-2.5 rounded-full transition-colors duration-900 cursor-pointer"
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.95 }}
           onClick={onClick}

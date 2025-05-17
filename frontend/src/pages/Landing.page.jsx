@@ -22,6 +22,7 @@ const Landing = () => {
         alt=""
         className="absolute top-0 left-0 h-[100vh] object-cover z-0"
       />
+      <div className="absolute top-0 left-0 h-[100vh] inset-0 z-5 bg-white/70" />
       <div className="relative z-10">
         <div className="container mx-auto px-4">
           <Hero onClick={handleCTA} />

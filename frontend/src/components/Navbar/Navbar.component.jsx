@@ -1,11 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { NAV_LINKS } from "../../utils/data";
 import LOGO from "../../assets/Logo.png";
+import { FiSun, FiMoon } from "react-icons/fi";
 
 const Navbar = ({ onClick }) => {
   const navRef = useRef(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("theme") || "dark";
+    }
+    return "dark";
+  });
 
   // Handle scroll effect
   useEffect(() => {
@@ -28,19 +35,28 @@ const Navbar = ({ onClick }) => {
     return () => document.removeEventListener("click", handleOutsideClick);
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
+
   return (
     <nav
       ref={navRef}
-      className={`fixed top-0 left-0 w-full bg-transparent flex items-center justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 ${
+      className={`fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 ${
         isScrolled
-          ? "bg-white/80 shadow-md text-gray-700 backdrop-blur-lg py-3 md:py-4"
+          ? "bg-white/90 shadow-xs text-black/80 shadow-black/20 py-3 md:py-4"
           : "py-4 md:py-6"
       }`}
     >
       {/* Logo */}
-      <a href="/" className="flex items-center gap-2">
+      <button onClick={toggleTheme} className="flex items-center gap-2 cursor-pointer">
         <img src={LOGO} alt="logo" className="h-12 w-15" />
-      </a>
+      </button>
 
       {/* Desktop Nav */}
       <div className="hidden md:flex items-center gap-4 lg:gap-8">
@@ -48,18 +64,14 @@ const Navbar = ({ onClick }) => {
           <a
             key={i}
             href={link.path}
-            className={`group flex flex-col gap-0.5 ${
-              isScrolled ? "text-gray-700" : "text-black"
-            }`}
+            className="group flex flex-col gap-0.5 text-black"
           >
             {link.name}
-            <div
-              className="h-0.5 w-0 group-hover:w-full transition-all duration-300 bg-primary"
-            />
+            <div className="h-0.5 w-0 group-hover:w-full transition-all duration-300 bg-primary" />
           </a>
         ))}
         <button
-          className="bg-primary hover:bg-secondary text-white font-semibold px-8 py-2.5 rounded-full transition-all duration-500 cursor-pointer"
+          className="bg-primary hover:bg-secondary text-[#FFFFFF] font-semibold px-8 py-2.5 rounded-full transition-all duration-500 cursor-pointer"
           onClick={onClick}
         >
           Login
@@ -72,7 +84,7 @@ const Navbar = ({ onClick }) => {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className={`h-6 w-6 cursor-pointer`}
           fill="none"
-          stroke="currentColor"
+          stroke="#DE0000"
           strokeWidth="2"
           viewBox="0 0 24 24"
         >
@@ -84,7 +96,7 @@ const Navbar = ({ onClick }) => {
 
       {/* Mobile Navigation Bar */}
       <div
-        className={`fixed top-0 left-0 w-2/3 h-screen bg-white flex flex-col items-center justify-center gap-6 font-medium text-gray-800 transition-all duration-500 ${
+        className={`fixed top-0 left-0 w-2/3 h-screen bg-white flex flex-col items-center justify-center gap-6 font-medium text-black transition-all duration-500 ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -109,7 +121,7 @@ const Navbar = ({ onClick }) => {
           </a>
         ))}
         <button
-          className="bg-primary focus:bg-secondary font-medium text-white px-8 py-2.5 rounded-full transition-all duration-500 cursor-pointer"
+          className="bg-primary focus:bg-secondary font-medium text-[#FFFFFF] px-8 py-2.5 rounded-full transition-all duration-500 cursor-pointer"
           onClick={onClick}
         >
           Login

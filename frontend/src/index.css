@@ -14,9 +14,18 @@
         scroll-behavior: smooth;
     }
 
+    html.dark {
+        --color-white: #000000;
+        --color-black: #FFFFFF;
+    }
+
     body {
-        background-color: #FCFBFC;
+        background-color: #FFFFFF;
         overflow-x: hidden;
+    }
+
+    .dark body {
+        background-color: #000000;
     }
 }
 

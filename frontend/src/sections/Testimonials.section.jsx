@@ -52,7 +52,7 @@ const Testimonials = () => {
           Hear from Our{" "}
           <span className="text-primary">Successful Candidates</span>
         </h2>
-        <p className="text-[13px] md:text-[14px] text-gray-700 text-center">
+        <p className="text-[13px] md:text-[14px] text-black/70 text-center">
           Discover how AceBot has helped candidates like you ace their
           interviews and land their dream jobs.
         </p>
@@ -66,27 +66,27 @@ const Testimonials = () => {
         {TESTIMONIALS.map((testimonial, index) => (
           <motion.div
             key={index}
-            className="text-sm w-80 border border-gray-200 pb-6 rounded-lg bg-white shadow hover:shadow-primary/30"
+            className="text-sm border border-black/4 pb-6 rounded-lg bg-black/5 shadow hover:shadow-primary/30"
             variants={itemVariants}
           >
-            <div class="flex flex-col items-center px-5 py-4 relative">
+            <div className="flex flex-col items-center px-5 py-4 relative">
               <img
-                class="h-24 w-24 absolute -top-14 rounded-full"
+                className="h-24 w-24 absolute -top-14 rounded-full"
                 src={testimonial.image}
-                alt="userImage3"
+                alt=""
               />
-              <div class="pt-8 text-center">
-                <h1 class="text-lg font-medium text-gray-800">
+              <div className="pt-8 text-center">
+                <h1 className="text-lg font-medium text-black/90">
                   {testimonial.name}
                 </h1>
-                <p class="text-gray-800/80">{testimonial.position}</p>
+                <p className="text-black/80">{testimonial.position}</p>
               </div>
             </div>
-            <p class="text-gray-500 px-6 text-center">
+            <p className="text-black/50 px-6 text-center">
               {testimonial.description}
             </p>
-            <div class="flex justify-center pt-4">
-              <div class="flex gap-0.5">
+            <div className="flex justify-center pt-4">
+              <div className="flex gap-0.5">
                 <svg
                   width="18"
                   height="18"
