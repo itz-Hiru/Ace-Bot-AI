@@ -6,11 +6,15 @@ import Features from "../sections/Features.section";
 import Work from "../sections/Work.section";
 import Testimonials from "../sections/Testimonials.section";
 import Footer from "../components/Footer/Footer.component";
+import Modal from "../components/Modals/Modal.component";
+import Login from "./Authentication/Login.page";
+import Signup from "./Authentication/Signup.page";
 
 const Landing = () => {
   const navigate = useNavigate();
 
   const [openAuthModal, setOpenAuthModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState("login");
 
   const handleCTA = () => {};
 
@@ -32,6 +36,23 @@ const Landing = () => {
         </div>
         <Footer />
       </div>
+      <Modal
+        isOpen={openAuthModal}
+        onClose={() => {
+          setOpenAuthModal(false);
+          setCurrentPage("login")
+        }}
+        hideHeader
+      >
+        <div className="">
+          {currentPage === "login" && (
+            <Login setCurrentPage={setCurrentPage} />
+          )}
+          {currentPage === "signup" && (
+            <Signup setCurrentPage={setCurrentPage} />
+          )}
+        </div>
+      </Modal>
     </div>
   );
 };
