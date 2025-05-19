@@ -1,16 +1,41 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Inputs/Input.component";
+import toast from "react-hot-toast";
+import { validateEmail } from "../../utils/helper";
 
 const Login = ({ setCurrentPage }) => {
   const naviagte = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    if (!email.trim()) {
+      toast.error("Please enter your email address");
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      toast.error("Please enter valid email address");
+    }
+
+    if (!password.trim()) {
+      toast.error("Please enter your password");
+    }
+
+    try {
+      setIsLoading(true);
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Something went wrong! Please try again.");
+      }
+    }
   };
   return (
     <div className="w-[90vw] md:w-[33vw] p-7 flex-col justify-center">
@@ -33,8 +58,8 @@ const Login = ({ setCurrentPage }) => {
           placeholder="Enter your password"
           type="password"
         />
-        <button type="submit" className="btn-primary">
-          Login
+        <button type="submit" disabled={isLoading} className="btn-primary">
+          {isLoading ? "Logging in..." : "Login"}
         </button>
         <p className="text-[13px] text-black/80 mt-5">
           Don't have an account?{" "}
