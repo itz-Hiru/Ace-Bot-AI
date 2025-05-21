@@ -50,11 +50,44 @@ const registerUser = async (req, res) => {
 // Description = Login/ Signin User
 // Route       = POST /api/auth/login
 // Access      = Public
-const loginUser = async (req, res) => {};
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+
+    // Check for valid email
+    if (!user) {
+      return res.status(400).json({ message: "Invalid email address." });
+    }
+
+    // Check for valid password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid password" });
+    }
+
+    // Return user data with JWT
+    res.status(200).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      profileImageUrl: user.profileImageUrl,
+      token: generateToken(user._id),
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Server Error", error: error.message });
+  }
+};
 
 // Description = Get user profile details
 // Route       = GET /api/auth/profile
 // Access      = Private
-const getUserProfile = async (req, res) => {};
+const getUserProfile = async (req, res) => {
+  try {
+  } catch (error) {
+    res.status(500).json({ message: "Server Error", error: error.message });
+  }
+};
 
 module.exports = { registerUser, loginUser, getUserProfile };
