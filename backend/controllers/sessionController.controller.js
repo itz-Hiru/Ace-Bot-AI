@@ -62,11 +62,13 @@ const getSessionById = async (req, res) => {
         options: { sort: { isPinned: -1, createdAt: 1 } },
       })
       .exec();
-    
+
     if (!session) {
-        return res.status(400).json({ success: false, message: "Session not found" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Session not found" });
     }
-    res.status(200).json({ success: true, session })
+    res.status(200).json({ success: true, session });
   } catch (error) {
     res.status(500).json({ message: "Server Error", error: error.message });
   }
@@ -77,6 +79,25 @@ const getSessionById = async (req, res) => {
 // Access      = Private
 const deleteSession = async (req, res) => {
   try {
+    const session = await Session.findById(req.params.id);
+
+    if (!session) {
+      return res.status(400).json({ message: "Session not found" });
+    }
+
+    // Check if logged-in user owned this session
+    if (session.user.toString() !== req.user.id) {
+      return res
+        .status(400)
+        .json({ message: "You haven't permission to delete this session." });
+    }
+
+    // Delete all questions linked to session
+    await Questions.deleteMany({ session: session._id });
+
+    // Delete session
+    await session.deleteOne();
+    res.status(200).json({ message: "Session deleted successfully." });
   } catch (error) {
     res.status(500).json({ message: "Server Error", error: error.message });
   }
