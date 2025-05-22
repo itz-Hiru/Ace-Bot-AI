@@ -1,0 +1,65 @@
+const Session = require("../models/session.model");
+const Questions = require("../models/questions.model");
+
+// Description = Add questions to the session
+// Route       = POST api/questions/add
+// Access      = Private
+const addQuestionsToSession = async (req, res) => {
+  try {
+    const { sessionId, questions } = req.body;
+
+    if (!sessionId) {
+      return res.status(400).json("Session is required.");
+    }
+    if (!questions || !Array.isArray(questions)) {
+      return res.status(400).json("Questions are required.");
+    }
+
+    const session = await Session.findById(sessionId);
+    if (!session) {
+      return res.status(400).json("Session not found.");
+    }
+
+    // Create new questions
+    const createQuestions = await Questions.insertMany(
+      questions.map((q) => ({
+        session: sessionId,
+        question: q.question,
+        answer: q.answer,
+      }))
+    );
+
+    // Update session to include new question IDs
+    session.questions.push(...createQuestions.map((q) => q._id));
+    await session.save();
+    res.status(200).json(createQuestions);
+  } catch (error) {
+    res.status(500).json({ message: "Server Error", error: error.message });
+  }
+};
+
+// Description = Pin/ Unpin question
+// Route       = POST api/questions/:id/pin
+// Access      = Private
+const togglePinQuestion = async (req, res) => {
+  try {
+  } catch (error) {
+    res.status(500).json({ message: "Server Error", error: error.message });
+  }
+};
+
+// Description = Add notes to question
+// Route       = POST api/questions/:id/note
+// Access      = Private
+const updateQuestionNote = async (req, res) => {
+  try {
+  } catch (error) {
+    res.status(500).json({ message: "Server Error", error: error.message });
+  }
+};
+
+module.exports = {
+  addQuestionsToSession,
+  togglePinQuestion,
+  updateQuestionNote,
+};
