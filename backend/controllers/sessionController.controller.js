@@ -38,10 +38,14 @@ const createSession = async (req, res) => {
 };
 
 // Description = Get all sessions for logged-in user
-// Route       = GET /api/session/my/sessions
+// Route       = GET /api/sessions/my/sessions
 // Access      = Private
 const getMySessions = async (req, res) => {
   try {
+    const sessions = await Session.find({ user: req.user.id })
+      .sort({ createdAt: -1 })
+      .populate("questions");
+    res.status(200).json(sessions);
   } catch (error) {
     res.status(500).json({ message: "Server Error", error: error.message });
   }
