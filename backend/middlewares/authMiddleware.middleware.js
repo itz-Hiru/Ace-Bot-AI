@@ -1,8 +1,8 @@
-const jwt = require("jsonwebtoken");
-const User = require("../models/user.model");
+import jwt from "jsonwebtoken";
+import User from "../models/user.model.js";
 
 // Middleware to protect routes
-const protect = async (req, res, next) => {
+export const protect = async (req, res, next) => {
   try {
     let token = req.headers.authorization;
 
@@ -19,5 +19,3 @@ const protect = async (req, res, next) => {
     res.status(401).json({ message: "Token Failed", error: error.message });
   }
 };
-
-module.exports = { protect };

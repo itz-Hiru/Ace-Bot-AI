@@ -1,10 +1,10 @@
-const express = require("express");
-const {
+import express from "express";
+import {
   togglePinQuestion,
   updateQuestionNote,
   addQuestionsToSession,
-} = require("../controllers/questionController.controller");
-const { protect } = require("../middlewares/authMiddleware.middleware");
+} from "../controllers/questionController.controller.js";
+import { protect } from "../middlewares/authMiddleware.middleware.js";
 
 const router = express.Router();
 
@@ -13,4 +13,4 @@ router.post("/add", protect, addQuestionsToSession);
 router.post("/:id/pin", protect, togglePinQuestion);
 router.post("/:id/note", protect, updateQuestionNote);
 
-module.exports = router;
+export default router;

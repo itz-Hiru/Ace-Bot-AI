@@ -1,11 +1,23 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const path = require("path");
-const connectDB = require("./config/db.config");
-const authRoutes = require("./routes/authRoutes.routes");
-const sessionRoutes = require("./routes/sessionRoutes.routes");
-const questionRoutes = require("./routes/questionRoutes.routes");
+import dotenv from "dotenv";
+dotenv.config();
+
+import express from "express";
+import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
+
+import connectDB from "./config/db.config.js";
+import authRoutes from "./routes/authRoutes.routes.js";
+import sessionRoutes from "./routes/sessionRoutes.routes.js";
+import questionRoutes from "./routes/questionRoutes.routes.js";
+import { protect } from "./middlewares/authMiddleware.middleware.js";
+import {
+  generatedInterviewQuestions,
+  generatedConceptExplanations,
+} from "./controllers/aiController.controller.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -29,11 +41,11 @@ app.use("/api/sessions", sessionRoutes);
 app.use("/api/questions", questionRoutes);
 
 // AI Generated Routes
-// app.use("/api/ai/generate/questions", protect, generatedInterviewQuestions);
-// app.use("/api/ai/generate/explanations", protect, generatedConceptExplanations);
+app.use("/api/ai/generate/questions", protect, generatedInterviewQuestions);
+app.use("/api/ai/generate/explanations", protect, generatedConceptExplanations);
 
 // Serve uploads folder
-app.use("/uploads", express.static(path.join(__dirname, "uploads"), {}));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Start server
 const PORT = process.env.PORT || 3000;

@@ -1,5 +1,5 @@
-const Session = require("../models/session.model");
-const Questions = require("../models/questions.model");
+import Session from "../models/session.model.js";
+import Questions from "../models/questions.model.js";
 
 // Description = Add questions to the session
 // Route       = POST api/questions/add
@@ -80,8 +80,4 @@ const updateQuestionNote = async (req, res) => {
   }
 };
 
-module.exports = {
-  addQuestionsToSession,
-  togglePinQuestion,
-  updateQuestionNote,
-};
+export { addQuestionsToSession, togglePinQuestion, updateQuestionNote };

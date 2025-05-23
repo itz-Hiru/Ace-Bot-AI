@@ -1,11 +1,11 @@
-const express = require("express");
-const {
+import express from "express";
+import {
   createSession,
   getSessionById,
   getMySessions,
   deleteSession,
-} = require("../controllers/sessionController.controller");
-const { protect } = require("../middlewares/authMiddleware.middleware");
+} from "../controllers/sessionController.controller.js";
+import { protect } from "../middlewares/authMiddleware.middleware.js";
 
 const router = express.Router();
 
@@ -15,4 +15,4 @@ router.get("/my/sessions", protect, getMySessions);
 router.get("/:id", protect, getSessionById);
 router.delete("/delete/:id", protect, deleteSession);
 
-module.exports = router;
+export default router;

@@ -1,5 +1,5 @@
-const Session = require("../models/session.model");
-const Questions = require("../models/questions.model");
+import Session from "../models/session.model.js";
+import Questions from "../models/questions.model.js";
 
 // Description = Create a new session and linked questions
 // Route       = POST /api/session/create
@@ -103,9 +103,4 @@ const deleteSession = async (req, res) => {
   }
 };
 
-module.exports = {
-  createSession,
-  getMySessions,
-  getSessionById,
-  deleteSession,
-};
+export { createSession, getMySessions, getSessionById, deleteSession };

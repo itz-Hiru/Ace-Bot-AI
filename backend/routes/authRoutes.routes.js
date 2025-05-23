@@ -1,11 +1,11 @@
-const express = require("express");
-const {
+import express from "express";
+import {
   registerUser,
   loginUser,
   getUserProfile,
-} = require("../controllers/authController.controller");
-const { protect } = require("../middlewares/authMiddleware.middleware");
-const upload = require("../middlewares/uploadMiddleware.middleware");
+} from "../controllers/authController.controller.js";
+import { protect } from "../middlewares/authMiddleware.middleware.js";
+import upload from "../middlewares/uploadMiddleware.middleware.js";
 
 const router = express.Router();
 
@@ -16,15 +16,12 @@ router.get("/profile", protect, getUserProfile);
 
 // Image upload route
 router.post("/upload/image", upload.single("image"), (req, res) => {
-  // Check if image file is uploaded
   if (!req.file) {
-    return res.status(400).json({ message: "No images uploaded" });
+    return res.status(400).json({ message: "No image uploaded" });
   }
-  // Create image url link
-  const imageUrl = `${req.protocol}://${req.get("host")}/uploads/${
-    req.file.filename
-  }`;
+
+  const imageUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
   res.status(200).json({ imageUrl });
 });
 
-module.exports = router;
+export default router;
