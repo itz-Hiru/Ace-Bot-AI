@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Input from "../../components/Inputs/Input.component";
 import toast from "react-hot-toast";
 import { validateEmail } from "../../utils/helper";
+import axiosInstance from "../../utils/axiosInstance";
+import { API_PATHS } from "../../utils/apiPath";
 
 const Login = ({ setCurrentPage }) => {
   const naviagte = useNavigate();
@@ -29,6 +31,20 @@ const Login = ({ setCurrentPage }) => {
 
     try {
       setIsLoading(true);
+      const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
+        email,
+        password,
+      });
+
+      const { token } = response.data;
+
+      if (token) {
+        localStorage.setItem("token", token);
+        naviagte("/dashboard");
+      }
+      
+      toast.success("Logging successfully");
+      setIsLoading(false);
     } catch (error) {
       if (error.response && error.response.data.message) {
         toast.error(error.response.data.message);
