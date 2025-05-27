@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { NAV_LINKS } from "../../utils/data";
 import LOGO from "../../assets/Logo.png";
-import { FiSun, FiMoon } from "react-icons/fi";
+import ProfileInfoCard from "../Cards/ProfileInfoCard.component";
 
-const Navbar = ({ onClick }) => {
+const Navbar = ({ onClick, user }) => {
   const navRef = useRef(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,7 +54,10 @@ const Navbar = ({ onClick }) => {
       }`}
     >
       {/* Logo */}
-      <button onClick={toggleTheme} className="flex items-center gap-2 cursor-pointer">
+      <button
+        onClick={toggleTheme}
+        className="flex items-center gap-2 cursor-pointer"
+      >
         <img src={LOGO} alt="logo" className="h-12 w-15" />
       </button>
 
@@ -70,12 +73,16 @@ const Navbar = ({ onClick }) => {
             <div className="h-0.5 w-0 group-hover:w-full transition-all duration-300 bg-primary" />
           </a>
         ))}
-        <button
-          className="bg-primary hover:bg-secondary text-[#FFFFFF] font-semibold px-8 py-2.5 rounded-full transition-all duration-500 cursor-pointer"
-          onClick={onClick}
-        >
-          Login
-        </button>
+        {user ? (
+          <ProfileInfoCard />
+        ) : (
+          <button
+            className="bg-primary hover:bg-secondary text-[#FFFFFF] font-semibold px-8 py-2.5 rounded-full transition-all duration-500 cursor-pointer"
+            onClick={onClick}
+          >
+            Login
+          </button>
+        )}
       </div>
 
       {/* Mobile Navigation Menu Button */}
@@ -115,17 +122,21 @@ const Navbar = ({ onClick }) => {
             <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
         </button>
+        {user ? (
+          <ProfileInfoCard />
+        ) : (
+          <button
+            className="bg-primary focus:bg-secondary font-medium text-[#FFFFFF] px-8 py-2.5 rounded-full transition-all duration-500 cursor-pointer"
+            onClick={onClick}
+          >
+            Login
+          </button>
+        )}
         {NAV_LINKS.map((link, i) => (
           <a key={i} href={link.path} onClick={() => setIsMenuOpen(false)}>
             {link.name}
           </a>
         ))}
-        <button
-          className="bg-primary focus:bg-secondary font-medium text-[#FFFFFF] px-8 py-2.5 rounded-full transition-all duration-500 cursor-pointer"
-          onClick={onClick}
-        >
-          Login
-        </button>
       </div>
     </nav>
   );

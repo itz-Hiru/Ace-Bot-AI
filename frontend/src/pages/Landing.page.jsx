@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar.component";
 import Hero from "../sections/Hero.section";
@@ -9,18 +9,26 @@ import Footer from "../components/Footer/Footer.component";
 import Modal from "../components/Modals/Modal.component";
 import Login from "./Authentication/Login.page";
 import Signup from "./Authentication/Signup.page";
+import { UserContext } from "../context/userContext.context";
 
 const Landing = () => {
   const navigate = useNavigate();
+  const { user } = useContext(UserContext);
 
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [currentPage, setCurrentPage] = useState("login");
 
-  const handleCTA = () => {};
+  const handleCTA = () => {
+    if (!user) {
+      setOpenAuthModal(true);
+    } else {
+      navigate("/dashboard");
+    }
+  };
 
   return (
     <div>
-      <Navbar onClick={() => setOpenAuthModal(true)} />
+      <Navbar onClick={() => setOpenAuthModal(true)} user={user} />
       <img
         src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/hero/gradientBackground.png"
         alt=""
