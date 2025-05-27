@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Inputs/Input.component";
 import toast from "react-hot-toast";
 import { validateEmail } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPath";
+import { UserContext } from "../../context/userContext.context";
 
 const Login = ({ setCurrentPage }) => {
+  const { updateUser } = useContext(UserContext);
   const naviagte = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -40,9 +42,10 @@ const Login = ({ setCurrentPage }) => {
 
       if (token) {
         localStorage.setItem("token", token);
+        updateUser(response.data);
         naviagte("/dashboard");
       }
-      
+
       toast.success("Logging successfully");
       setIsLoading(false);
     } catch (error) {

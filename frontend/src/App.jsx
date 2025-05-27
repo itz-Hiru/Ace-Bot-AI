@@ -6,37 +6,40 @@ import Signup from "./pages/Authentication/Signup.page";
 import Dashboard from "./pages/Home/Dashboard.page";
 import Interview from "./pages/Interview/Interview.page";
 import Landing from "./pages/Landing.page";
+import UserProvider from "./context/userContext.context";
 
 const App = () => {
   return (
-    <div>
-      <Router>
-        <Routes>
-          {/* Default Route */}
-          <Route path="/" element={<Landing />} />
+    <UserProvider>
+      <div>
+        <Router>
+          <Routes>
+            {/* Default Route */}
+            <Route path="/" element={<Landing />} />
 
-          {/* Login Routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+            {/* Login Routes */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
 
-          {/* Dashboard Route */}
-          <Route path="/dashboard" element={<Dashboard />} />
+            {/* Dashboard Route */}
+            <Route path="/dashboard" element={<Dashboard />} />
 
-          {/* Interview Route */}
-          <Route path="/interviews/:sessionId" element={<Interview />} />
-        </Routes>
-      </Router>
+            {/* Interview Route */}
+            <Route path="/interviews/:sessionId" element={<Interview />} />
+          </Routes>
+        </Router>
 
-      {/* Toast notifications */}
-      <Toaster
-        toastOptions={{
-          className: "",
-          style: {
-            fontSize: "13px",
-          },
-        }}
-      />
-    </div>
+        {/* Toast notifications */}
+        <Toaster
+          toastOptions={{
+            className: "",
+            style: {
+              fontSize: "13px",
+            },
+          }}
+        />
+      </div>
+    </UserProvider>
   );
 };
 
