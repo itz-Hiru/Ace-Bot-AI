@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Inputs/Input.component";
 import toast from "react-hot-toast";
 import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector.component";
 import { validateEmail, validatePassword } from "../../utils/helper";
+import { UserContext } from "../../context/userContext.context";
+import axiosInstance from "../../utils/axiosInstance";
+import { API_PATHS } from "../../utils/apiPath";
+import uploadImage from "../../utils/uploadImage";
 
 const Signup = ({ setCurrentPage }) => {
   const navigate = useNavigate();
+  const { updateUser } = useContext(UserContext);
 
   const [profilePicture, setProfilePicture] = useState(null);
   const [fullName, setFullName] = useState("");
@@ -16,6 +21,8 @@ const Signup = ({ setCurrentPage }) => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
+
+    let profileImageUrl = "";
 
     if (!fullName.trim()) {
       toast.error("Please enter your full name");
@@ -41,15 +48,41 @@ const Signup = ({ setCurrentPage }) => {
       toast.error(
         "Password must be at least 8 characters, include uppercase, lowercase, number, and special character."
       );
+      return;
     }
 
     try {
       setIsLoading(true);
+      // Upload image if present
+      if (profilePicture) {
+        const imageUploadRes = await uploadImage(profilePicture);
+        profileImageUrl = imageUploadRes.imageUrl || "";
+      }
+
+      const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
+        name: fullName,
+        email,
+        password,
+        profileImageUrl,
+      });
+
+      const { token } = response.data;
+
+      if (token) {
+        localStorage.setItem("token", token);
+        updateUser(response.data);
+        toast.success("SignUp Successfully");
+        navigate("/dashboard");
+        setIsLoading(false);
+      }
     } catch (error) {
       if (error.response && error.response.data.message) {
         toast.error(error.response.data.message);
+        setIsLoading(false);
       } else {
         toast.error("Something went wrong! Please try again.");
+        console.error(error);
+        setIsLoading(false);
       }
     }
   };
