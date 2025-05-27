@@ -73,13 +73,13 @@ export const generatedInterviewQuestions = async (req, res) => {
 // Access      = Private
 export const generatedConceptExplanations = async (req, res) => {
   try {
-    const { concept } = req.body;
+    const { question } = req.body;
 
-    if (!concept) {
-      return res.status(400).json({ message: "Concept is required." });
+    if (!question) {
+      return res.status(400).json({ message: "Question is required." });
     }
 
-    const prompt = conceptExplanationPrompt(concept);
+    const prompt = conceptExplanationPrompt(question);
 
     const response = await ai.models.generateContent({
       model: "gemini-2.0-flash-lite",
