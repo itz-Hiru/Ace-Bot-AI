@@ -3,6 +3,13 @@ import {
   questionAnswerPrompt,
   conceptExplanationPrompt,
 } from "../utils/prompts.utils.js";
+import dotenv from "dotenv";
+dotenv.config();
+
+if (!process.env.GEMINI_API_KEY) {
+  console.error("GEMINI_API_KEY is not defined in environment variables");
+  throw new Error("GEMINI_API_KEY is required");
+}
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
@@ -44,18 +51,19 @@ export const generatedInterviewQuestions = async (req, res) => {
       contents: prompt,
     });
 
-    let rawText = response.text;
+    const rawText = response?.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
-    // Clean JSON(Remove ```json and ``` from the begining and the end)
+    // Clean JSON(Remove
     const cleanedText = rawText
-      .replace(/^```json\s*/, "") // Remove starting ```json
-      .replace(/```$/, "") // Remove ending ```
+      .replace(/```json/g, "") // Clean starting
+      .replace(/```/g, "") // Clean ending
       .trim(); // Remove extra spaces
 
     // Parse
     const data = JSON.parse(cleanedText);
     res.status(200).json(data);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Server Error", error: error.message });
   }
 };
@@ -65,7 +73,32 @@ export const generatedInterviewQuestions = async (req, res) => {
 // Access      = Private
 export const generatedConceptExplanations = async (req, res) => {
   try {
+    const { concept } = req.body;
+
+    if (!concept) {
+      return res.status(400).json({ message: "Concept is required." });
+    }
+
+    const prompt = conceptExplanationPrompt(concept);
+
+    const response = await ai.models.generateContent({
+      model: "gemini-2.0-flash-lite",
+      contents: prompt,
+    });
+
+    const rawText = response?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+
+    // Clean JSON(Remove
+    const cleanedText = rawText
+      .replace(/```json/g, "") // Clean starting
+      .replace(/```/g, "") // Clean ending
+      .trim(); // Remove extra spaces
+
+    // Parse
+    const data = JSON.parse(cleanedText);
+    res.status(200).json(data);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Server Error", error: error.message });
   }
 };
