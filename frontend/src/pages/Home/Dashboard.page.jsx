@@ -7,6 +7,8 @@ import { API_PATHS } from "../../utils/apiPath";
 import SummaryCard from "../../components/Cards/SummaryCard.component";
 import { CARD_BG } from "../../utils/data";
 import moment from "moment";
+import Modal from "../../components/Modals/Modal.component";
+import CreateSessionForm from "../../components/Forms/CreateSessionForm.component";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -65,6 +67,15 @@ const Dashboard = () => {
           Add New
         </button>
       </div>
+      <Modal
+        isOpen={openCreateModal}
+        onClose={() => {setOpenCreateModal(false)}}
+        hideHeader
+      >
+        <div>
+          <CreateSessionForm />
+        </div>
+      </Modal>
     </DashboardLayout>
   );
 };
