@@ -138,3 +138,16 @@ export const TESTIMONIALS = [
       "I’ve tried many interview tools, but AceBot stands out. It feels like a personal coach guiding you through every step.",
   },
 ];
+
+export const CARD_BG = [
+  { id: 1, bgcolor: "linear-gradient(135deg, #E6F8F3 0%, #F7FCFA 100%)" },
+  { id: 2, bgcolor: "linear-gradient(135deg, #FEF9E7 0%, #FFFDF4 100%)" },
+  { id: 3, bgcolor: "linear-gradient(135deg, #EAF7FF 0%, #F3FBFF 100%)" },
+  { id: 4, bgcolor: "linear-gradient(135deg, #FFF2E9 0%, #FFF8F3 100%)" },
+  { id: 5, bgcolor: "linear-gradient(135deg, #E7F6FE 0%, #F4FAFD 100%)" },
+  { id: 6, bgcolor: "linear-gradient(135deg, #F5F5F5 0%, #FBFBFB 100%)" },
+  { id: 7, bgcolor: "linear-gradient(135deg, #FFF4FC 0%, #FFF8FD 100%)" },
+  { id: 8, bgcolor: "linear-gradient(135deg, #E8FEF3 0%, #F5FEF8 100%)" },
+  { id: 9, bgcolor: "linear-gradient(135deg, #F0ECFF 0%, #F7F5FF 100%)" },
+  { id: 10, bgcolor: "linear-gradient(135deg, #FEF2F2 0%, #FFF8F8 100%)" },
+];
